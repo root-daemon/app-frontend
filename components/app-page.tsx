@@ -1,69 +1,49 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import { ShoppingCart, ArrowRight, Sun, Moon } from "lucide-react";
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Switch } from "@/components/ui/switch"
+import { ShoppingCart, ArrowRight, Sun, Moon } from 'lucide-react'
 
 const products = [
-  {
-    id: 1,
-    name: "Iphone 16",
-    price: 199.99,
-    image:
-      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-geo-240909_inline.jpg.large.jpg",
-  },
-  {
-    id: 2,
-    name: "Iphone 16 Pro",
-    price: 149.99,
-    image:
-      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-geo-240909_inline.jpg.large.jpg",
-  },
-  {
-    id: 3,
-    name: "Iphone 16 Plus",
-    price: 79.99,
-    image:
-      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-geo-240909_inline.jpg.large.jpg",
-  },
-  {
-    id: 4,
-    name: "Silk Tie",
-    price: 59.99,
-    image:
-      "https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-hero-geo-240909_inline.jpg.large.jpg",
-  },
-];
+  { id: 1, name: "Elegant Watch", price: 199.99, image: "https://ynvlvlqzgtwjwhcqojhg.supabase.co/storage/v1/object/public/images/watch.jpg" },
+  { id: 2, name: "Designer Sunglasses", price: 149.99, image: "https://ynvlvlqzgtwjwhcqojhg.supabase.co/storage/v1/object/public/images/sunglasses.jpg" },
+  { id: 3, name: "Leather Wallet", price: 79.99, image: "https://ynvlvlqzgtwjwhcqojhg.supabase.co/storage/v1/object/public/images/wallet.jpg" },
+  { id: 4, name: "Silk Tie", price: 59.99, image: "https://ynvlvlqzgtwjwhcqojhg.supabase.co/storage/v1/object/public/images/tie.jpg" },
+]
 
-export default function Home() {
-  const [darkMode, setDarkMode] = useState(false);
+export function Page() {
+  const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add("dark");
+      document.documentElement.classList.add('dark')
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark')
     }
-  }, [darkMode]);
+  }, [darkMode])
 
   return (
     <main className="flex flex-col min-h-screen transition-colors duration-300 dark:bg-gray-900">
       <nav className="bg-white dark:bg-gray-800 p-4 flex justify-end">
         <div className="flex items-center space-x-2">
           <Sun className="h-5 w-5 text-yellow-500" />
-          <Switch checked={darkMode} onCheckedChange={setDarkMode} aria-label="Toggle dark mode" />
+          <Switch
+            checked={darkMode}
+            onCheckedChange={setDarkMode}
+            aria-label="Toggle dark mode"
+          />
           <Moon className="h-5 w-5 text-gray-500" />
         </div>
       </nav>
 
       <section className="relative h-[600px] overflow-hidden">
         <Image
-          src="https://www.apple.com/newsroom/images/2024/09/apple-debuts-iphone-16-pro-and-iphone-16-pro-max/article/Apple-iPhone-16-Pro-finish-lineup-240909_big.jpg.large.jpg"
+          src="https://ynvlvlqzgtwjwhcqojhg.supabase.co/storage/v1/object/public/images/hero-image.jpg"
           alt="Stylish person wearing watch and sunglasses"
           layout="fill"
           objectFit="cover"
@@ -118,7 +98,9 @@ export default function Home() {
                   </CardContent>
                   <CardFooter>
                     <Button asChild className="w-full">
-                      <Link href={`/products/${product.id}`}>View Details</Link>
+                      <Link href={`/products/${product.id}`}>
+                        View Details
+                      </Link>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -130,7 +112,11 @@ export default function Home() {
 
       <section className="bg-gray-900 dark:bg-gray-950 text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <h2 className="text-3xl font-bold mb-4">Join Our VIP Club</h2>
             <p className="text-xl mb-8">Get exclusive offers and early access to new products</p>
             <Button asChild size="lg" variant="secondary">
@@ -142,5 +128,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  );
+  )
 }
