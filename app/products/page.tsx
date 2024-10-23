@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/table";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -176,25 +177,27 @@ export default function ProductManagement() {
         </TableHeader>
         <TableBody>
           {products.map((product) => (
-            <TableRow key={product.id}>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>${product.price.toFixed(2)}</TableCell>
-              <TableCell>{product.description}</TableCell>
-              <TableCell>
-                <Button
-                  onClick={() => setEditingProduct(product)}
-                  className="mr-2"
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => handleDeleteProduct(product.id)}
-                  variant="destructive"
-                >
-                  Delete
-                </Button>
-              </TableCell>
-            </TableRow>
+            <Link href={`/products/${product.id}`} key={product.id}>
+              <TableRow>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>${product.price.toFixed(2)}</TableCell>
+                <TableCell>{product.description}</TableCell>
+                <TableCell>
+                  <Button
+                    onClick={() => setEditingProduct(product)}
+                    className="mr-2"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() => handleDeleteProduct(product.id)}
+                    variant="destructive"
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            </Link>
           ))}
         </TableBody>
       </Table>
